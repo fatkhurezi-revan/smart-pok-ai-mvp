@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { CloudUpload, FileUp, BadgeCheck, ShieldCheck, ShieldAlert, FileText, Loader2, XCircle, Sparkles, ChevronDown } from 'lucide-react';
-import confetti from 'canvas-confetti';
+
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
@@ -87,7 +87,8 @@ export default function Home() {
     fileInputRef.current?.click();
   };
 
-  const triggerConfetti = () => {
+  const triggerConfetti = async () => {
+    const confetti = (await import('canvas-confetti')).default;
     const duration = 3 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -178,17 +179,14 @@ const resultItemVariants: Variants = {
     <div className="min-h-screen bg-[#F8F9FA] text-slate-800 font-sans selection:bg-indigo-950/20 relative overflow-x-hidden flex flex-col">
       
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0 hidden md:block">
-        <motion.div 
-          animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[10%] -left-[10%] w-[80%] md:w-[50%] h-[50%] rounded-full bg-gradient-to-br from-blue-600/10 to-transparent blur-[100px] md:blur-[120px]" 
+        <div 
+          className="animate-blob-1 absolute -top-[10%] -left-[10%] w-[80%] md:w-[50%] h-[50%] rounded-full bg-gradient-to-br from-blue-600/10 to-transparent blur-[100px] md:blur-[120px]" 
         />
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], rotate: [0, -5, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[20%] -right-[10%] w-[70%] md:w-[40%] h-[60%] rounded-full bg-gradient-to-bl from-violet-400/10 to-transparent blur-[100px] md:blur-[120px]" 
+        <div 
+          className="animate-blob-2 absolute top-[20%] -right-[10%] w-[70%] md:w-[40%] h-[60%] rounded-full bg-gradient-to-bl from-violet-400/10 to-transparent blur-[100px] md:blur-[120px]" 
         />
-        <motion.div 
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 10, 0] }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-[20%] left-[10%] md:left-[20%] w-[80%] md:w-[60%] h-[50%] rounded-full bg-gradient-to-tr from-blue-600/10 to-transparent blur-[100px] md:blur-[120px]" 
+        <div 
+          className="animate-blob-3 absolute -bottom-[20%] left-[10%] md:left-[20%] w-[80%] md:w-[60%] h-[50%] rounded-full bg-gradient-to-tr from-blue-600/10 to-transparent blur-[100px] md:blur-[120px]" 
         />
       </div>
       
@@ -200,7 +198,7 @@ const resultItemVariants: Variants = {
             className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer"
           >
             
-            <img src="/validata-ai-logo.png" alt="ValidataAI Logo" className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-sm pointer-events-none select-none" />
+            <img src="/validata-ai-logo.webp" alt="ValidataAI Logo" className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-sm pointer-events-none select-none" />
             <span className="font-extrabold text-lg sm:text-xl tracking-tight text-indigo-950">Validata<span className="text-violet-600">AI</span></span>
           </motion.button>
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-1.5 sm:gap-3">

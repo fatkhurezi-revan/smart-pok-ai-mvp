@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: "Sistem Ekstraksi & Validasi Dokumen (KTP, KK, Slip Gaji) otomatis menggunakan teknologi OCR dan AI Llama-3.",
   keywords: ["ValidataAI", "OCR Bank", "Verifikasi Dokumen", "AI Perbankan", "Llama-3", "Ekstraksi KTP"],
   authors: [{ name: "Revan Fatkhurezi" }],
+  alternates: {
+    canonical: "https://validata-ai.vercel.app",
+  },
   openGraph: {
     title: "ValidataAI | Validasi Kredit Super Cerdas",
     description: "Sistem otomasi ekstraksi OCR. Memvalidasi kelengkapan serta mencocokkan NIK, Nama, dan Nominal Gaji secara real-time.",
@@ -19,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "ValidataAI",
     images: [
       {
-        url: "/validata-ai-logo.png",
+        url: "/validata-ai-logo.webp",
         width: 800,
         height: 800,
         alt: "ValidataAI Logo",
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ValidataAI | Enterprise Document Validation",
     description: "Sistem Ekstraksi & Validasi Dokumen OCR Otomatis berbasis AI",
-    images: ["/validata-ai-logo.png"],
+    images: ["/validata-ai-logo.webp"],
   },
   robots: {
     index: true,
@@ -50,7 +53,28 @@ export default function RootLayout({
       lang="id"
       className={`${jakarta.variable} font-sans h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "ValidataAI",
+              "url": "https://validata-ai.vercel.app",
+              "description": "Sistem Ekstraksi & Validasi Dokumen (KTP, KK, Slip Gaji) otomatis menggunakan teknologi OCR dan AI.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "All",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "IDR"
+              }
+            })
+          }}
+        />
+      </body>
     </html>
   );
 }
