@@ -228,7 +228,7 @@ const resultItemVariants: Variants = {
         >
 
           <motion.h1 variants={itemVariants} className="text-3xl sm:text-5xl md:text-6xl font-black text-indigo-950 tracking-tight leading-tight drop-shadow-sm">
-            Validasi Kredit <br className="hidden sm:block" />
+            Validasi Kredit <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-violet-700"> Super Cerdas</span>
           </motion.h1>
           <motion.p variants={itemVariants} className="text-slate-500 text-sm sm:text-base md:text-xl max-w-2xl mx-auto font-medium leading-relaxed px-2">
